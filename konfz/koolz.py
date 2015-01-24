@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import json
 
 from flask import (
     Flask,
@@ -24,12 +25,19 @@ JSON_DIR = '{0}/{1}'.format(app.root_path, 'data')
 # JSON
 jsons = dict()
 
-def lookup(hint):
-    pass
+def lookup(kernel, hint):
+    result = []
+    for config in jsons[kernel]:
+        if hint in config:
+            result.append(config)
+    return result
+
 
 def json_load():
     for kernel in os.listdir(JSON_DIR):
-        pass
+        path = '{0}/{1}'.format(JSON_DIR, kernel)
+        with open(path) as file:
+            jsons[kernel] = json.load(file)
 
 
 # Routes
@@ -38,9 +46,13 @@ def json_load():
 def home(kernel=None):
     if not kernel or kernel not in jsons:
         kernel = jsons.keys()[0]
+    hits = None
+    hint = None
     if request.method == 'POST' and 'hint' in request.form:
-        hits = lookup(request.form['hint'])
-    return render_template('home.html', kernel=kernel)
+        hint = request.form['hint']
+        if len(hint) >= 3:
+            hits = lookup(kernel, hint.upper())
+    return render_template('home.html', kernel=kernel, hint=hint, hits=hits)
 
 @app.route('/switch')
 def switch():

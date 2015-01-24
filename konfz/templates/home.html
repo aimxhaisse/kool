@@ -6,7 +6,7 @@
   <div class="row">
     <div class="col-lg-12">
       <div class="input-group">
-	<input type="text" class="form-control input-lg" placeholder="Search for...">
+	<input name="hint" type="text" class="form-control input-lg" placeholder="{% if not hint %}Search for...{% endif %}" {% if hint %}value="{{ hint }}"{% endif %} />
 	<span class="input-group-btn">
 	  <button class="btn btn-default btn-lg" type="button">Search!</button>
 	</span>
@@ -14,4 +14,13 @@
     </div>
   </div>
 </form>
+
+{% if hint %}
+{% if hits %}
+There are matches
+{{ hits }}
+{% else %}
+No match for your query.
+{% endif %}
+{% endif %}
 {% endblock %}

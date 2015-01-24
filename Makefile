@@ -17,7 +17,7 @@ kool-configs: $(WORKING_DIR)/lkddb $(LKDDBS)
 
 $(WORKING_DIR)/kernel-3.17:
 	mkdir -p $@
-	wget https://www.kernel.org/pub/linux/kernel/v3.x/linux-3.17.8.tar.xz -O - | tar zxf - -C $@ --strip 1
+	wget https://www.kernel.org/pub/linux/kernel/v3.x/linux-3.17.8.tar.gz -O - | tar zxf - -C $@ --strip 1
 
 
 $(WORKING_DIR)/lkddb:

@@ -1,4 +1,15 @@
 {% extends "base.html" %}
 {% block body %}
 <p class="lead">What are you looking for?</p>
+
+<form name="lookup-hint" method="post">
+  <div class="row">
+    <div class="col-xs-6">
+      <input name="lookup-hint" type="text" class="form-control input-lg" placeholder="Search">
+    </div>
+    <div class="col-xs-6">
+      <button type="submit" class="btn btn-lg btn-success">Search</button>
+    </div>
+  </div>
+</form>
 {% endblock %}

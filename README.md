@@ -1,2 +1,7 @@
-# kool
-cool tools to play around with Linux kernels
+# Kool
+
+Cool tools to play around with Linux kernels.
+
+## konfz
+
+A visualizer of kernel configuration settings, powered by lkddb.

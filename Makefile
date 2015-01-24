@@ -9,11 +9,11 @@ JSONS = $(WORKING_DIR)/kernel-3.17.json
 # Rulz
 
 
-all:	kconfiglib konfz
+all:	$(WORKING_DIR)/kconfiglib konfz
 
 
-kconfiglib:
-	git clone git://github.com/ulfalizer/Kconfiglib.git kconfiglib
+$(WORKING_DIR)/kconfiglib:
+	git clone git://github.com/ulfalizer/Kconfiglib.git $@
 
 
 konfz: $(JSONS)

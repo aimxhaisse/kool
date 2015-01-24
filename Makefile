@@ -37,4 +37,4 @@ fclean:
 
 
 %.json: %
-	touch $@
+	./konfz/scripts/scan-kconfigs.sh $< $@

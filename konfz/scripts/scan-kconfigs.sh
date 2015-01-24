@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
 kernel=$1
+json=$2
 
 function scan-kconfigs
 {
-    confs=$(find $kernel -name Kconfig)
-    for c in $conf
+    for conf in $(find $kernel -name Kconfig)
     do
-	echo $c
+	./konfz/scripts/scan-kconfig.py $kernel $conf $json || exit
     done
 }
 

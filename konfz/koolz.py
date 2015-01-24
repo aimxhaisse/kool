@@ -29,7 +29,8 @@ def lookup(hint):
 
 def json_load():
     for kernel in os.listdir(JSON_DIR):
-        jsons[kernel] = None
+        pass
+
 
 # Routes
 @app.route('/', methods=['GET', 'POST'])

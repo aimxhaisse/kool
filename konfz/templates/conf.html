@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block body %}
+<p class="lead">Details about <b>{{ requested }}</b></p>
+
+<div class="row">
+  {% if conf %}
+
+  <div class="col-xs-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Help Message</div>
+      <div class="panel-body">
+	<p>
+	  {{ conf.help }}
+	</p>
+      </div>
+      <table class="table">
+	<tbody>
+	  <tr>
+	    <th>Default value</th>
+	    <td>{{ conf.value }}</td>
+	  </tr>
+	</tbody>
+      </table>
+    </div>
+  </div>
+  
+  {% else %}
+
+  <div class="col-xs-12">
+    <p class="alert alert-info" role="alert">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      <span class="sr-only">Info</span>
+      This configuration does not exist.
+    </p>
+  </div>
+
+  {% endif %}
+
+</div>
+
+{% endblock body %}

@@ -58,6 +58,14 @@ def home(kernel=None):
 def switch():
     return render_template('switch.html', kernels=jsons.keys())
 
+@app.route('/c/<kernel>/<cfg>')
+def conf(kernel, cfg):
+    conf = None
+    if kernel in jsons:
+        if cfg in jsons[kernel]:
+            conf = jsons[kernel][cfg]
+    return render_template('conf.html', conf=conf, requested=cfg, kernel=kernel)
+
 # Main
 if __name__ == '__main__':
     json_load()

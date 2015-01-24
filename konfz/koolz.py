@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from flask import Flask
+from flask import (
+    Flask,
+    render_template
+)
 
 # Flask init
 app = Flask(__name__)
@@ -12,7 +15,7 @@ def run():
 # Routes
 @app.route('/')
 def home():
-    return 'Hello'
+    return render_template('home.html')
 
 # Main
 if __name__ == '__main__':

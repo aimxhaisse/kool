@@ -14,6 +14,11 @@ all:	$(WORKING_DIR)/kconfiglib konfz
 
 $(WORKING_DIR)/kconfiglib:
 	git clone git://github.com/ulfalizer/Kconfiglib.git $@
+	cd $@ && python setup.py install
+
+
+run:	$(JSONS) konfz
+	cd konfz && python run
 
 
 konfz: $(JSONS)

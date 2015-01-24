@@ -3,19 +3,23 @@
 
 WORKING_DIR = tmp
 KERNELS = $(WORKING_DIR)/kernel-3.17
-LKDDBS = $(WORKING_DIR)/kernel-3.17.lkddb
+JSONS = $(WORKING_DIR)/kernel-3.17.json
 
 
 # Rulz
 
 
-all:	konfz
+all:	kconfiglib konfz
 
 
-konfz: $(WORKING_DIR)/lkddb $(LKDDBS)
-	rm -rf konfz/data/lkddbs
-	mkdir -p konfz/data/lkddbs
-	cp $(LKDDBS) konfz/data/lkddbs
+kconfiglib:
+	git clone git://github.com/ulfalizer/Kconfiglib.git kconfiglib
+
+
+konfz: $(JSONS)
+	rm -rf konfz/data/
+	mkdir -p konfz/data/
+	cp $(JSONS) konfz/data/
 
 
 $(WORKING_DIR)/kernel-3.17:
@@ -23,14 +27,9 @@ $(WORKING_DIR)/kernel-3.17:
 	wget https://www.kernel.org/pub/linux/kernel/v3.x/linux-3.17.8.tar.gz -O - | tar zxf - -C $@ --strip 1
 
 
-$(WORKING_DIR)/lkddb:
-	mkdir -p $@
-	wget http://cateee.net/sources/lkddb-sources/lkddb-sources-2015-01-07.tar.gz -O - | tar zxf - -C $@ --strip 1
-
-
 fclean:
-	rm -rf $(KERNELS) $(LKDDBS) $(WORKING_DIR)/lkddb
+	rm -rf $(KERNELS) $(JSONS) $(WORKING_DIR)
 
 
-%.lkddb: %
-	cd $(WORKING_DIR)/lkddb && ./build-lkddb.py ../../$< && mv lkddb.data ../../$@
+%.json: %
+	touch $@

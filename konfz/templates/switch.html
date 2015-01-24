@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% block body %}
-<p class="lead">Available Kernels</p>
+<p class="lead">Pick your kernel</p>
 
-<ul>
-{% for k in kernels %}
-<li>
-  <a href="{{ url_for('home', kernel=k) }}">{{ k }}</a>
-</li>
-{% endfor %}
-</ul>
+<div class="list-group">
+  {% for k in kernels %}
+  <a href="{{ url_for('home', kernel=k) }}" class="list-group-item">
+    {{ k }}
+  </a>
+  {% endfor %}
+</div>
 
 {% endblock body %}

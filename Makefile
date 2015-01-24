@@ -30,4 +30,4 @@ fclean:
 
 
 %.lkddb: %
-	cd $(WORKING_DIR)/lkddb && ./build-lkddb.py ../../$< && mv lkddb.data.db ../../$@
+	cd $(WORKING_DIR)/lkddb && ./build-lkddb.py ../../$< && mv lkddb.data ../../$@

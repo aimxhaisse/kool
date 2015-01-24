@@ -18,7 +18,7 @@ $(WORKING_DIR)/kconfiglib:
 
 
 run:	$(JSONS) konfz
-	cd konfz && python run
+	cd konfz && python koolz.py
 
 
 konfz: $(JSONS)

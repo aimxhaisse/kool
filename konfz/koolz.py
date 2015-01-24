@@ -27,7 +27,7 @@ jsons = dict()
 def lookup(hint):
     pass
 
-def jsons_load():
+def json_load():
     for kernel in os.listdir(JSON_DIR):
         jsons[kernel] = None
 

@@ -15,29 +15,10 @@ def scan_kconfig(kconfig, json):
 
     if os.path.exists(json):
         with open(json) as file:
-            d = json.loads(file)
+            d = json.load(file)
 
     current = STATE_UNKNOWN
     entry = dict()
-
-    with open(kconfig) as file:
-        for line in file.readlines():
-            if len(line) == 0 or line[0] == '#':
-                continue
-            m = re.match('^config ([^\s]+)$', line)
-            if m:
-                current = STATE_IN_CONFIG
-                entry = dict()
-                entry['name'] = m.group(1)
-                continue
-            if line == '\t---help---' or line == 'help':
-                current = STATE_IN_HELP
-                continue
-            if current == STATE_IN_HELP:
-                entry['help'] += line
-                continue
-            if state == STATE_UNKNOWN:
-                continue
 
 
 if __name__ == '__main__':

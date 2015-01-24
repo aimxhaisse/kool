@@ -22,10 +22,32 @@
   <body>
 
     <div class="container">
-      <div class="page-header">
-        <h1>Konfz <small><a href="{{ url_for('switch') }}">{{ kernel }}</a></small></h1>
-      </div>
-      {% block body %}{% endblock %}
+
+	<div class="row">
+	  <div class="col-xs-8">
+            <h1>
+	      <a href="/">Konfz</a>
+	      <small>
+		{{ kernel }}
+	      </small>
+	    </h1>
+	  </div>
+	  <div class="col-xs-4 text-right">
+	    {% if request.path != "/switch" %}
+	    <h2>
+	      <small>
+		<a href="{{ url_for('switch') }}">switch kernel</a>
+	      </small>
+	    </h2>
+	    {% endif %}
+	  </div>
+	</div>
+
+	<div class="row">
+	  <div class="col-xs-12">
+	    {% block body %}{% endblock %}
+	  </div>
+	</div>
     </div>
 
     <footer class="footer">

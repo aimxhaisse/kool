@@ -9,10 +9,13 @@ LKDDBS = $(WORKING_DIR)/kernel-3.17.lkddb
 # Rulz
 
 
-all:	kool-configs
+all:	konfz
 
 
-kool-configs: $(WORKING_DIR)/lkddb $(LKDDBS)
+konfz: $(WORKING_DIR)/lkddb $(LKDDBS)
+	rm -rf konfz/data/lkddbs
+	mkdir -p konfz/data/lkddbs
+	cp $(LKDDBS) konfz/data/lkddbs
 
 
 $(WORKING_DIR)/kernel-3.17:

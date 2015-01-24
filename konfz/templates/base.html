@@ -7,7 +7,7 @@
     <meta name="description" content="Konfz, cool visualizer of Linux kernel configurations">
     <meta name="author" content="Sébastien Rannou, mxs@sbrk.org">
 
-    <title>Konfz</title>
+    <title>Konfz - Yet Another Kernel Tool</title>
 
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/css/konfz.css" rel="stylesheet">
@@ -23,7 +23,7 @@
 
     <div class="container">
       <div class="page-header">
-        <h1>Konfz <small>Yet another kernel config browser</small></h1>
+        <h1>Konfz <small><a href="{{ url_for('switch') }}">{{ kernel }}</a></small></h1>
       </div>
       {% block body %}{% endblock %}
     </div>

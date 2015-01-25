@@ -4,4 +4,4 @@ Cool tools to play around with Linux kernels.
 
 ## konfz
 
-A visualizer of kernel configuration settings, powered by lkddb.
+A visualizer of kernel configuration settings.

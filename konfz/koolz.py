@@ -2,6 +2,7 @@
 
 import os
 import json
+import re
 
 from flask import (
     Flask,
@@ -26,6 +27,9 @@ JSON_DIR = '{0}/{1}'.format(app.root_path, 'data')
 jsons = dict()
 
 def lookup(kernel, hint):
+    m = re.match('CONFIG_(.*)', hint)
+    if m:
+        hint = m.group(1)
     result = []
     for config in jsons[kernel]:
         if hint in config:

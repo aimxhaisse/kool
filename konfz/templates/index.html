@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="row">
+  <div class="col-xs-12">
+    <p class="lead">Index of configs for kernel {{ kernel }} (<small>{{ configs | count }} entries</small>)</p>
+    <ul>
+      {% for config in configs %}
+      <li><a href="{{ url_for('conf', kernel=kernel, cfg=config) }}">CONFIG_{{ config }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}
+
+    

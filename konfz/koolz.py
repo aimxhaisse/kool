@@ -38,6 +38,14 @@ def lookup(kernel, hint):
             result.append(config)
     return result
 
+def get_also_in(config, kernel):
+    res = []
+    for name, configs in jsons.iteritems():
+        if name != kernel:
+            if config in configs:
+                res.append(name)
+    return res
+
 def get_configs(kernel):
     return jsons[kernel].keys()
 
@@ -76,10 +84,12 @@ def switch():
 @app.route('/c/<kernel>/<cfg>')
 def conf(kernel, cfg):
     conf = None
+    also_in = None
     if kernel in jsons:
         if cfg in jsons[kernel]:
             conf = jsons[kernel][cfg]
-    return render_template('conf.html', conf=conf, requested=cfg, kernel=kernel)
+            also_in = get_also_in(cfg, kernel)
+    return render_template('conf.html', conf=conf, requested=cfg, kernel=kernel, also_in=also_in)
 
 # Main
 if __name__ == '__main__':

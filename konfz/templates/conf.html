@@ -22,6 +22,18 @@
 	</tbody>
       </table>
     </div>
+
+    {% if also_in %}
+    <p>
+      Also found in the following kernels:
+    </p>
+    <ul>
+      {% for k in also_in %}
+      <li><a href="{{ url_for('conf', kernel=k, cfg=requested) }}">{{ k }}</a></li>
+      {% endfor %}
+    {% endif %}
+    </ul>
+
   </div>
   
   {% else %}

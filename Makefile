@@ -2,8 +2,14 @@
 
 
 WORKING_DIR = tmp
-KERNELS = $(WORKING_DIR)/kernel-3.17
-JSONS = $(WORKING_DIR)/kernel-3.17.json
+
+KERNELS = \
+	$(WORKING_DIR)/kernel-3.17		\
+	$(WORKING_DIR)/kernel-3.14
+
+JSONS = \
+	$(WORKING_DIR)/kernel-3.17.json 	\
+	$(WORKING_DIR)/kernel-3.14.json
 
 
 # Rulz
@@ -30,6 +36,11 @@ konfz: $(JSONS)
 $(WORKING_DIR)/kernel-3.17:
 	mkdir -p $@
 	wget https://www.kernel.org/pub/linux/kernel/v3.x/linux-3.17.8.tar.gz -O - | tar zxf - -C $@ --strip 1
+
+
+$(WORKING_DIR)/kernel-3.14:
+	mkdir -p $@
+	wget https://www.kernel.org/pub/linux/kernel/v3.x/linux-3.14.32.tar.gz -O - | tar zxf - -C $@ --strip 1
 
 
 fclean:

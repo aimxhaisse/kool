@@ -4,7 +4,7 @@ KERNEL_BASE_URL	?= "https://www.kernel.org/pub/linux/kernel/v3.x/"
 WORKING_DIR 	?= tmp
 KERNEL		?= linux-3.17
 TARBALL		?= $(KERNEL).tar.gz
-JSON 		?= $(KERNEL).json
+JSON 		?= $(KERNEL)
 RESULT		?= konfz/data
 
 # Rulz

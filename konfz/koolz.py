@@ -36,6 +36,8 @@ def lookup(kernel, hint):
             result.append(config)
     return result
 
+def get_configs(kernel):
+    return jsons[kernel].keys()
 
 def json_load():
     for kernel in os.listdir(JSON_DIR):
@@ -57,6 +59,11 @@ def home(kernel=None):
         if len(hint) >= 3:
             hits = lookup(kernel, hint.upper())
     return render_template('home.html', kernel=kernel, hint=hint, hits=hits)
+
+@app.route('/i/<kernel>')
+def index(kernel):
+    configs = get_configs(kernel)
+    return render_template('index.html', kernel=kernel, configs=configs)
 
 @app.route('/switch')
 def switch():

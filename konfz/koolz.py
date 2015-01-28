@@ -8,6 +8,8 @@ from flask import (
     Flask,
     render_template,
     request,
+    redirect,
+    url_for,
 )
 
 
@@ -58,6 +60,8 @@ def home(kernel=None):
         hint = request.form['hint']
         if len(hint) >= 3:
             hits = lookup(kernel, hint.upper())
+            if len(hits) == 1:
+                return redirect(url_for('conf', kernel=kernel, cfg=hits[0]), 302)
     return render_template('home.html', kernel=kernel, hint=hint, hits=hits)
 
 @app.route('/i/<kernel>')

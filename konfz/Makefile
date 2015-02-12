@@ -5,7 +5,7 @@ WORKING_DIR 	?= tmp
 KERNEL		?= linux-3.17
 TARBALL		?= $(KERNEL).tar.gz
 JSON 		?= $(KERNEL)
-RESULT		?= konfz/data
+RESULT		?= data/
 VENV		?= .venv
 
 # Rulz
@@ -15,11 +15,11 @@ all:	$(VENV) $(RESULT)/$(JSON)
 
 $(VENV):
 	virtualenv $@
-	pip install -r konfz/requirements.txt
+	pip install -r requirements.txt
 
 
 $(RESULT)/$(JSON): $(RESULT) $(WORKING_DIR)/kconfiglib $(WORKING_DIR)/$(KERNEL)
-	. $(VENV)/bin/activate && ./konfz/scripts/scan-kconfigs.sh $(WORKING_DIR)/$(KERNEL) $(RESULT)/$(JSON)
+	. $(VENV)/bin/activate && ./scripts/scan-kconfigs.sh $(WORKING_DIR)/$(KERNEL) $(RESULT)/$(JSON)
 
 
 $(WORKING_DIR)/$(KERNEL):

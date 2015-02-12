@@ -17,9 +17,12 @@ from flask import (
 app = Flask(__name__)
 
 def run():
-    app.config.update(dict(SECRET_KEY='oui'))
-    app.run(host='0.0.0.0', debug=True)
+    json_load()
+    app.run(host='0.0.0.0', debug=False)
 
+def debug():
+    json_load()
+    app.run(host='0.0.0.0', debug=False)
 
 # Confz
 JSON_DIR = '{0}/{1}'.format(app.root_path, 'data')
@@ -93,5 +96,4 @@ def conf(kernel, cfg):
 
 # Main
 if __name__ == '__main__':
-    json_load()
     run()

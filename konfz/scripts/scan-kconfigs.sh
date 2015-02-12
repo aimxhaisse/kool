@@ -7,7 +7,7 @@ function scan-kconfigs
 {
     for conf in $(find $kernel -name Kconfig)
     do
-	./konfz/scripts/scan-kconfig.py $kernel $conf $json || exit
+	./scripts/scan-kconfig.py $kernel $conf $json || exit
     done
 }
 

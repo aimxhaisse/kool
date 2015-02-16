@@ -23,7 +23,7 @@ def run():
     cherrypy.server.unsubscribe()
     server = cherrypy._cpserver.Server()
     server.socket_host = "0.0.0.0"
-    server.socket_port = 5000
+    server.socket_port = 20007
     server.thread_pool = 30
     server.subscribe()
     cherrypy.engine.start()

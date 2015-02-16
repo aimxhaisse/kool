@@ -2,3 +2,5 @@ www:
   build: .
   ports:
     - 5000
+  volumes:
+    - data:code/data

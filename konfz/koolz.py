@@ -73,7 +73,7 @@ def json_load():
 @app.route('/k/<kernel>', methods=['GET', 'POST'])
 def home(kernel=None):
     if not kernel or kernel not in jsons:
-        kernel = jsons.keys()[0]
+        kernel = 'linux-3.19'
     hits = None
     hint = None
     if request.method == 'POST' and 'hint' in request.form:

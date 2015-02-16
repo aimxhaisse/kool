@@ -3,6 +3,7 @@
 import os
 import json
 import re
+import cherrypy
 
 from flask import (
     Flask,
@@ -18,7 +19,15 @@ app = Flask(__name__)
 
 def run():
     json_load()
-    app.run(host='0.0.0.0', debug=False)
+    cherrypy.tree.graft(app, "/")
+    cherrypy.server.unsubscribe()
+    server = cherrypy._cpserver.Server()
+    server.socket_host = "0.0.0.0"
+    server.socket_port = 5000
+    server.thread_pool = 30
+    server.subscribe()
+    cherrypy.engine.start()
+    cherrypy.engine.block()
 
 def debug():
     json_load()

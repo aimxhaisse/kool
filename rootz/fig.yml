@@ -3,4 +3,4 @@ www:
   ports:
     - 20008:80
   volumes:
-    - data:code/data
+    - www:/var/www

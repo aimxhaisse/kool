@@ -9,6 +9,5 @@ EXPOSE 80
 
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 ADD rootz.conf /etc/nginx/sites-available/default
-ADD www /var/www
 
 CMD nginx

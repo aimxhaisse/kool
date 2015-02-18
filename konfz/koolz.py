@@ -68,6 +68,26 @@ def json_load():
             jsons[kernel] = json.load(file)
 
 
+# Misc
+def sort_kernel(ka, kb):
+    reg = '^linux\-([0-9])\.(.*)$'
+    va = re.match(reg, ka)
+    vb = re.match(reg, kb)
+    major_a = int(va.group(1))
+    major_b = int(vb.group(1))
+    if major_a > major_b:
+        return 1
+    if major_b > major_a:
+        return -1
+    minor_a = int(va.group(2))
+    minor_b = int(vb.group(2))
+    if minor_a > minor_b:
+        return 1
+    if minor_a < minor_b:
+        return -1
+    return 0
+
+
 # Routes
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/k/<kernel>', methods=['GET', 'POST'])
@@ -81,7 +101,8 @@ def home(kernel=None):
         if len(hint) >= 3:
             hits = lookup(kernel, hint.upper())
             if len(hits) == 1:
-                return redirect(url_for('conf', kernel=kernel, cfg=hits[0]), 302)
+                return redirect(url_for('conf', kernel=kernel, cfg=hits[0]),
+                                302)
     return render_template('home.html', kernel=kernel, hint=hint, hits=hits)
 
 @app.route('/i/<kernel>')
@@ -91,7 +112,8 @@ def index(kernel):
 
 @app.route('/switch')
 def switch():
-    return render_template('switch.html', kernels=jsons.keys())
+    return render_template('switch.html', kernels=sorted(jsons.keys(),
+                                                         sort_kernel))
 
 @app.route('/c/<kernel>/<cfg>')
 def conf(kernel, cfg):
@@ -101,7 +123,9 @@ def conf(kernel, cfg):
         if cfg in jsons[kernel]:
             conf = jsons[kernel][cfg]
             also_in = get_also_in(cfg, kernel)
-    return render_template('conf.html', conf=conf, requested=cfg, kernel=kernel, also_in=also_in)
+    return render_template('conf.html', conf=conf,
+                           requested=cfg, kernel=kernel,
+                           also_in=sorted(also_in, sort_kernel))
 
 # Main
 if __name__ == '__main__':

@@ -29,9 +29,9 @@ def run():
     cherrypy.engine.start()
     cherrypy.engine.block()
 
-def debug():
+def run_debug():
     json_load()
-    app.run(host='0.0.0.0', debug=False)
+    app.run(host='0.0.0.0', debug=True)
 
 # Confz
 JSON_DIR = '{0}/{1}'.format(app.root_path, 'data')
@@ -70,7 +70,7 @@ def json_load():
 
 # Misc
 def sort_kernel(ka, kb):
-    reg = '^linux\-([0-9])\.(.*)$'
+    reg = '^linux\-([0-9])\.([0-9]+)(?:\.([0-9]+))?$'
     va = re.match(reg, ka)
     vb = re.match(reg, kb)
     major_a = int(va.group(1))
@@ -85,6 +85,13 @@ def sort_kernel(ka, kb):
         return 1
     if minor_a < minor_b:
         return -1
+    if len(va.groups()) == 3 and len(vb.groups()) == 3:
+        subversion_a = int(va.group(3))
+        subversion_b = int(vb.group(3))
+        if subversion_a > subversion_b:
+            return 1
+        if subversion_a < subversion_b:
+            return -1
     return 0
 
 

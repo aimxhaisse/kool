@@ -1,6 +1,6 @@
-# Kool
+# Koolz
 
-Cool tools to play around with Linux kernels.
+Tools to play around with Linux kernels.
 
 ## konfz
 
